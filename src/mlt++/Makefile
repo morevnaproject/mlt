@@ -20,6 +20,7 @@ LIBFLAGS += -Wl,-soname,$(SONAME)
 endif
 
 CXXFLAGS += -I.. $(RDYNAMIC) -DVERSION=\"$(version)\" -fvisibility=hidden
+CPPFLAGS += -I..
 
 LDFLAGS += -L../framework -lmlt
 ifeq ($(targetos), Linux)
@@ -62,7 +63,7 @@ $(TARGET):	$(OBJS)
 	fi
 
 depend:	$(SRCS)
-	$(CXX) -MM $(CXXFLAGS) $^ 1>.depend
+	$(CXX) -MM $(CPPFLAGS) $^ 1>.depend
 
 clean:
 	$(RM) $(OBJS) $(TARGET) $(NAME) $(SONAME)

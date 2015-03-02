@@ -1,5 +1,7 @@
 CFLAGS += -I../..
 
+CPPFLAGS += -I../..
+
 LDFLAGS += -L../../framework -lmlt -lm -lpthread
 
 include ../../../config.mak
@@ -68,7 +70,7 @@ composite_line_yuv_mmx.o: composite_line_yuv_mmx.S
 	$(CC) -o $@ -c composite_line_yuv_mmx.S
 
 depend:	$(SRCS)
-		$(CC) -MM $(CFLAGS) $^ 1>.depend
+		$(CC) -MM $(CPPFLAGS) $^ 1>.depend
 
 distclean:	clean
 		rm -f .depend
