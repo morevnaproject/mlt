@@ -100,7 +100,7 @@ $(TARGET): $(OBJS)
 		fi
 
 depend:	$(SRCS)
-	$(CC) -MM $(CFLAGS) $^ 1>.depend
+	$(CC) -MM $(CPPFLAGS) $^ 1>.depend
 
 distclean:	clean
 		rm -f .depend

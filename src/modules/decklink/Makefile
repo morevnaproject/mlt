@@ -1,5 +1,7 @@
 CFLAGS += -I../..
 
+CPPFLAGS += -I../..
+
 LDFLAGS += -L../../framework -lmlt -lpthread
 
 include ../../../config.mak
@@ -12,14 +14,17 @@ OBJS = consumer_decklink.o \
 
 ifeq ($(targetos), MinGW)
 CFLAGS += -Iwin
+CPPFLAGS += -Iwin
 OBJS += win/DeckLinkAPI_i.o
 LDFLAGS += -lole32
 else
 ifeq ($(targetos), Darwin)
 CFLAGS += -Idarwin
+CPPFLAGS += -Idarwin
 OBJS += darwin/DeckLinkAPIDispatch.o
 else
 CFLAGS += -Ilinux
+CPPFLAGS += -Ilinux
 OBJS += linux/DeckLinkAPIDispatch.o
 endif
 endif
@@ -36,7 +41,7 @@ $(TARGET): $(OBJS)
 		$(CXX) $(SHFLAGS) -o $@ $(OBJS) $(LDFLAGS)
 
 depend:	$(SRCS)
-		$(CXX) -MM $(CFLAGS) $^ 1>.depend
+		$(CXX) -MM $(CPPFLAGS) $^ 1>.depend
 
 distclean:	clean
 		rm -f .depend

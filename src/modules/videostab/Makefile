@@ -1,8 +1,10 @@
 include ../../../config.mak
 
 CFLAGS += -I../..
+CPPFLAGS += -I../..
 ifdef SSE2_FLAGS
 CFLAGS += -msse2
+CPPFLAGS += -msse2
 endif
 
 LDFLAGS += -L../../framework -lmlt -lm
@@ -25,7 +27,7 @@ $(TARGET): $(OBJS)
 		$(CC) $(SHFLAGS) -o $@ $(OBJS) $(LDFLAGS)
 
 depend:	$(SRCS)
-		$(CC) -MM $(CFLAGS) $^ 1>.depend
+		$(CC) -MM $(CPPFLAGS) $^ 1>.depend
 
 distclean:	clean
 		rm -f .depend

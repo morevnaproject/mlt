@@ -5,6 +5,8 @@ OBJS = melt.o \
 
 CFLAGS += -I.. $(RDYNAMIC) -DVERSION=\"$(version)\"
 
+CPPFLAGS += -I..
+
 LDFLAGS += -L../framework -lmlt -lpthread
 
 SRCS := $(OBJS:.o=.c)
@@ -23,7 +25,7 @@ $(meltname): $(OBJS)
 		$(CC) -o $@ $(OBJS) $(LDFLAGS)
 
 depend:	$(SRCS)
-		$(CC) -MM $(CFLAGS) $^ 1>.depend
+		$(CC) -MM $(CPPFLAGS) $^ 1>.depend
 
 distclean:	clean
 		rm -f .depend

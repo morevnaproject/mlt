@@ -1,5 +1,7 @@
 CFLAGS += -I../..
 
+CPPFLAGS += -I../.. 
+
 LDFLAGS += -L../../framework -lmlt -lpthread -lm
 
 include ../../../config.mak
@@ -22,6 +24,7 @@ LDFLAGS += -lX11
 endif
 
 CFLAGS += $(shell sdl-config --cflags)
+CPPFLAGS += $(shell sdl-config --cflags)
 
 LDFLAGS += $(shell sdl-config --libs)
 
@@ -43,7 +46,7 @@ $(TARGET): $(OBJS)
 		$(CC) $(SHFLAGS) -o $@ $(OBJS) $(LDFLAGS)
 
 depend:	$(SRCS)
-		$(CC) -MM $(CFLAGS) $^ 1>.depend
+		$(CC) -MM $(CPPFLAGS) $^ 1>.depend
 
 distclean:	clean
 		rm -f .depend

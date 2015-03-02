@@ -1,5 +1,7 @@
 CFLAGS += -I../..
 
+CPPFLAGS += -I../.. 
+
 LDFLAGS += -L../../framework -lmlt -lpthread
 
 include ../../../config.mak
@@ -39,7 +41,7 @@ $(TARGET): $(OBJS)
 		$(CXX) $(SHFLAGS) -o $@ $(OBJS) $(LDFLAGS)
 
 depend:	$(SRCS)
-		$(CXX) -MM $(CFLAGS) $^ 1>.depend
+		$(CXX) -MM $(CPPFLAGS) $^ 1>.depend
 
 distclean:	clean
 		rm -f .depend
